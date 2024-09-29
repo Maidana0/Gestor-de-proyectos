@@ -8,16 +8,12 @@ export default function EnhancedTableToolbar(props) {
   const { numSelected } = props;
   return (
     <Toolbar
-      sx={[
-        {
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-        },
-        numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
-        },
-      ]}
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        bgcolor: "var(--background-color)",
+        color: "var(--white-color)",
+      }}
     >
       {numSelected > 0 ? (
         <Typography
@@ -31,7 +27,7 @@ export default function EnhancedTableToolbar(props) {
       ) : (
         <Typography
           sx={{ flex: '1 1 100%' }}
-          variant="h6"
+          variant="h5"
           id="tableTitle"
           component="div"
         >

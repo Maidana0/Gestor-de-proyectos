@@ -14,12 +14,12 @@
   --black-color: #000;
   --gray-color: #CDCDCD;
   --white-color: #f2f2f2;
-
+  --background-color: #242424;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
   color: var(--white-color);
-  background-color: #242424;
+  background-color: var(--background-color);
 }
 
 #root {
@@ -31,7 +31,7 @@
   scroll-behavior: smooth;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }

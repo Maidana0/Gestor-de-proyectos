@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { visuallyHidden } from '@mui/utils';
 import { TableHead, Box, Checkbox, TableCell, TableRow, TableSortLabel } from "@mui/material"
+import { alpha } from '@mui/material/styles';
 
 const headCells = [
   {
@@ -16,22 +17,22 @@ const headCells = [
     label: 'Lenguaje',
   },
   {
-    id: 'role',
+    id: 'description',
     numeric: false,
     disablePadding: false,
-    label: 'Rol',
+    label: 'Descripcion',
   },
   {
-    id: 'carbs',
-    numeric: true,
+    id: 'type',
+    numeric: false,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Tipo',
   },
   {
-    id: 'protein',
-    numeric: true,
+    id: 'state',
+    numeric: false,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Estado',
   },
 ];
 
@@ -45,7 +46,10 @@ export default function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead >
+    <TableHead sx={{
+      // bgcolor: (theme) => alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
+      bgcolor: alpha("#000", 0.75),
+    }}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -56,6 +60,7 @@ export default function EnhancedTableHead(props) {
             inputProps={{
               'aria-label': 'select all desserts',
             }}
+            sx={{ color: (theme) => theme.palette.secondary.light }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -69,6 +74,10 @@ export default function EnhancedTableHead(props) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{
+                fontWeight: '600', color: "var(--white-color)",
+                ":hover": { color: (theme) => theme.palette.secondary.light },
+              }}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
