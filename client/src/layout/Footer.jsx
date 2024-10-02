@@ -8,7 +8,7 @@ const Footer = () => {
     >
 
       <Box display="flex" flexDirection={{ xs: "column", sm: "row" }} justifyContent="space-evenly" alignItems="center" gap={1}>
-        <Typography variant="h6" color={"var(--white-color)"}>
+        <Typography variant="body1" color={"var(--white-color)"}>
           Organizador
         </Typography>
 

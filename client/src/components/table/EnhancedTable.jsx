@@ -12,7 +12,8 @@ import {
   TablePagination,
   Paper,
   FormControlLabel,
-  Switch
+  Switch,
+  alpha
 } from "@mui/material"
 
 
@@ -123,12 +124,17 @@ export default function EnhancedTable() {
   );
 
   return (
-    <Box sx={{ width: '95%', margin: '1rem auto' }}>
-      <Paper sx={{ width: '100%', mb: 2, }}>
+    <Box sx={{ width: '90%', margin: '1rem auto' }}>
+      <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
+        <TableContainer >
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{
+              minWidth: 750,
+              "& .MuiTableCell-root": {
+                // color: "var(--white-color)",
+              }
+            }}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
           >
@@ -140,7 +146,15 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
-            <TableBody>
+            <TableBody
+              sx={{
+                "& .Mui-selected": {
+                  bgcolor: (theme) => alpha(theme.palette.secondary.light, 0.25) + "!important",
+                },
+                "& .MuiTableRow-hover:hover": {
+                  bgcolor: (theme) => alpha(theme.palette.secondary.light, 0.35) + "!important",
+                }
+              }}>
               {visibleRows.map((row, index) => {
                 const isItemSelected = selected.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -154,7 +168,7 @@ export default function EnhancedTable() {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: 'pointer', bgcolor: index % 2 === 0 ? "#e4e4e4a6" : "transparent" }}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
@@ -206,7 +220,12 @@ export default function EnhancedTable() {
         />
       </Paper>
       <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
+        control={
+          <Switch
+            color={"secondary"}
+            checked={dense}
+            onChange={handleChangeDense}
+          />}
         label="Quitar espaciado"
       />
     </Box>

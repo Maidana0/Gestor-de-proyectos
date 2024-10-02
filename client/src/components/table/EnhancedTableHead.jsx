@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
 import { visuallyHidden } from '@mui/utils';
 import { TableHead, Box, Checkbox, TableCell, TableRow, TableSortLabel } from "@mui/material"
-import { alpha } from '@mui/material/styles';
 
 const headCells = [
   {
     id: 'name',
-    numeric: false,
     disablePadding: true,
     label: 'Framework',
   },
   {
     id: 'language',
-    numeric: false,
     disablePadding: false,
     label: 'Lenguaje',
   },
@@ -24,13 +21,11 @@ const headCells = [
   },
   {
     id: 'type',
-    numeric: false,
     disablePadding: false,
     label: 'Tipo',
   },
   {
     id: 'state',
-    numeric: false,
     disablePadding: false,
     label: 'Estado',
   },
@@ -48,7 +43,9 @@ export default function EnhancedTableHead(props) {
   return (
     <TableHead sx={{
       // bgcolor: (theme) => alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
-      bgcolor: alpha("#000", 0.75),
+      bgcolor: "#000",
+      "& .Mui-active": { color: (theme) => theme.palette.secondary.light + "!important" },
+      "& .MuiTableSortLabel-icon": { color: (theme) => theme.palette.secondary.light + "!important" },
     }}>
       <TableRow>
         <TableCell padding="checkbox">
@@ -66,7 +63,7 @@ export default function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={"left"}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
